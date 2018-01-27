@@ -17,7 +17,8 @@ module.exports = {
         app:'./src/app.js',
         home:'./src/home.js',
         about:'./src/about.js',
-        vendor:['jquery'] //['juqry','other-lib']
+        vendor:['jquery','moment'] , //['juqry','other-lib']
+        jquery: ['jquery']
     }, //string | object |array
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -49,7 +50,7 @@ module.exports = {
         new ClearwebpackPlugin(['dist']),
         new webpack.optimize.CommonsChunkPlugin(
             { 
-                name:'vendor'
+                names:['vendor','jquery']
             })
     ]
 
