@@ -67,8 +67,18 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
 __webpack_require__(1);
 
+var name = "chris";
+
+console.log(name);
+
+(function () {
+    console.log("Hello!");
+})();
 
 /***/ }),
 /* 1 */
