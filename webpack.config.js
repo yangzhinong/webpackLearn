@@ -1,3 +1,5 @@
+var path= require("path");
+
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var extractPlugin = new ExtractTextPlugin({
@@ -5,9 +7,10 @@ var extractPlugin = new ExtractTextPlugin({
 })
 
 module.exports = {
-    entry: './app.js', //string | object |array
+    entry: './src/app.js', //string | object |array
     output: {
-        filename: './build.js'
+        path: path.resolve(__dirname, "dist"),
+        filename: 'build.js'
     },
     //watch:true,
     module: {
@@ -26,7 +29,7 @@ module.exports = {
         rules: [{
             test: /\.scss$/,
             use: extractPlugin.extract({
-                use: ["css-loader", 'sass-loader']
+                use: ["css-loader",'postcss-loader', 'sass-loader']
             })
         }]
     },
