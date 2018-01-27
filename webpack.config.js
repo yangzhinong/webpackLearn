@@ -4,13 +4,20 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var extractPlugin = new ExtractTextPlugin({
     filename: '[name].build.css'
-})
+});
+
+var ClearwebpackPlugin= require('clean-webpack-plugin');
+
+
+const webpack= require('webpack');
+
 
 module.exports = {
     entry: {
         app:'./src/app.js',
         home:'./src/home.js',
-        about:'./src/about.js'
+        about:'./src/about.js',
+        vendor:['jquery'] //['juqry','other-lib']
     }, //string | object |array
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -38,7 +45,12 @@ module.exports = {
         }]
     },
     plugins: [
-        extractPlugin
+        extractPlugin,
+        new ClearwebpackPlugin(['dist']),
+        new webpack.optimize.CommonsChunkPlugin(
+            { 
+                name:'vendor'
+            })
     ]
 
 };

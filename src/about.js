@@ -1,4 +1,7 @@
 require('./css/about.scss');
 
+var $= require('jquery');
 
-console.log('hello about js');
+$(document).ready(function(){
+    console.log('hello about js');
+});
