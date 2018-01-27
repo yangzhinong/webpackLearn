@@ -3,14 +3,18 @@ var path= require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var extractPlugin = new ExtractTextPlugin({
-    filename: 'main.css'
+    filename: '[name].build.css'
 })
 
 module.exports = {
-    entry: './src/app.js', //string | object |array
+    entry: {
+        app:'./src/app.js',
+        home:'./src/home.js',
+        about:'./src/about.js'
+    }, //string | object |array
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: 'build.js'
+        filename: '[name].build.js'
     },
     //watch:true,
     module: {
