@@ -3,7 +3,7 @@ var path= require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var extractPlugin = new ExtractTextPlugin({
-    filename: '[name].build.css'
+    filename: '[name].bundle.css'
 });
 
 var ClearwebpackPlugin= require('clean-webpack-plugin');
@@ -19,6 +19,8 @@ var plugins= [
             names:['vendor','jquery']
         })
 ];
+
+
 const WebpackShellPlugin = require('webpack-shell-plugin');
 plugins.push(new WebpackShellPlugin({
     onBuildStart: ['echo "Starting"'],
@@ -26,18 +28,22 @@ plugins.push(new WebpackShellPlugin({
 }));
 
 
-
 module.exports = {
+    externals: {
+        jquery:'jQuery'
+    },
+
     entry: {
         app:'./src/app.js',
         'page/home':'./src/home.js',
         'page/about':'./src/about.js',
-        vendor:['jquery','moment'] , //['juqry','other-lib']
-        jquery: ['jquery']
+        // vendor:['jquery','moment'] , //['juqry','other-lib']
+        // jquery: ['jquery']
     }, //string | object |array
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: '[name].build.js'
+        filename: '[name].bundle.js',
+        publicPath: 'dist'
     },
     //watch:true,
     module: {
