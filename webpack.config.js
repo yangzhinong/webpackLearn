@@ -11,12 +11,27 @@ var ClearwebpackPlugin= require('clean-webpack-plugin');
 
 const webpack= require('webpack');
 
+var plugins= [
+    extractPlugin,
+    new ClearwebpackPlugin(['dist']),
+    new webpack.optimize.CommonsChunkPlugin(
+        { 
+            names:['vendor','jquery']
+        })
+];
+const WebpackShellPlugin = require('webpack-shell-plugin');
+plugins.push(new WebpackShellPlugin({
+    onBuildStart: ['echo "Starting"'],
+    onBuildEnd: ['copy.bat']
+}));
+
+
 
 module.exports = {
     entry: {
         app:'./src/app.js',
-        home:'./src/home.js',
-        about:'./src/about.js',
+        'page/home':'./src/home.js',
+        'page/about':'./src/about.js',
         vendor:['jquery','moment'] , //['juqry','other-lib']
         jquery: ['jquery']
     }, //string | object |array
@@ -45,13 +60,5 @@ module.exports = {
             })
         }]
     },
-    plugins: [
-        extractPlugin,
-        new ClearwebpackPlugin(['dist']),
-        new webpack.optimize.CommonsChunkPlugin(
-            { 
-                names:['vendor','jquery']
-            })
-    ]
-
+    plugins: plugins
 };
