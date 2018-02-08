@@ -14,15 +14,25 @@ const webpack = require("webpack");
 
 var plugins = [
   extractPlugin,
-  new HtmlWebpackExternalsPlugin(
+  new HtmlWebpackExternalsPlugin(  ///https://www.npmjs.com/package/html-webpack-externals-plugin
     {
         externals: [
             {
               module: 'jquery',
-              entry: 'https://unpkg.com/jquery@3.2.1/dist/jquery.min.js', //'dist/jquery.min.js',
+              entry:   'dist/jquery.min.js',
               global: 'jQuery',
             },
+            {
+                module: 'bootstrap',
+                entry: 'dist/css/bootstrap.min.css',
+              },
+              {
+                module: 'bootstrap',
+                entry: 'dist/css/bootstrap.min.css',
+                supplements: ['dist/fonts/'],
+              },
           ],
+         // hash: true,
     }
   ),
 
