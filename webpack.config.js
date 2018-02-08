@@ -20,13 +20,14 @@ var plugins = [
 
   new HtmlWebpackPlugin({
     filename: "index.html",
-    template: "src/index.html"
+    template: "src/index.html",
+    chunks:['app']
   }),
-  new ClearwebpackPlugin(["dist"])
-  // new webpack.optimize.CommonsChunkPlugin(
-  //     {
-  //         names:['vendor','jquery']
-  //     })
+  new ClearwebpackPlugin(["dist"]),
+  new webpack.optimize.CommonsChunkPlugin(
+      {
+          names:['jquery']
+      })
 ];
 
 // const WebpackShellPlugin = require('webpack-shell-plugin');
@@ -41,11 +42,11 @@ module.exports = {
   // },
 
   entry: {
-    app: "./src/app.js"
+    app: "./src/app.js",
     // 'page/home':'./src/home.js',
     // 'page/about':'./src/about.js',
     // vendor:['jquery','moment'] , //['juqry','other-lib']
-    // jquery: ['jquery']
+    jquery: ['jquery']
   }, //string | object |array
   output: {
     path: path.resolve(__dirname, "dist"),
