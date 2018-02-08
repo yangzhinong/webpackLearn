@@ -1,1 +1,1 @@
-xcopy node_modules\jquery\dist dist\lib\jquery\
+rem xcopy node_modules\jquery\dist dist\lib\jquery\

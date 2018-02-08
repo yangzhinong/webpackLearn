@@ -1,10 +1,10 @@
 require('./style.scss');
 
+import 'jquery';
 const name= "chris";
 
 console.log(name);
 
-(()=>{
-    console.log("Hello!");
-})();
-
+$(document).ready(function(){
+    console.log("Hello jquery");
+})
