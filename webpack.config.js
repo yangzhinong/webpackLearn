@@ -9,7 +9,7 @@ var extractPlugin = new ExtractTextPlugin({
 
 var ClearwebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
-
+var CopyWebpackPlugin= require('copy-webpack-plugin');
 const webpack = require("webpack");
 
 var plugins = [
@@ -35,6 +35,10 @@ var plugins = [
          // hash: true,
     }
   ),
+//   new CopyWebpackPlugin([
+//     { from: 'node_modules/bootstrap/dist/css', to: 'css/'},
+//     { from: 'node_modules/bootstrap/dist/fonts', to: 'fonts/'}
+//   ]),
 
   new HtmlWebpackPlugin({
     filename: "index.html",
