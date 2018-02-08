@@ -8,15 +8,23 @@ var extractPlugin = new ExtractTextPlugin({
 });
 
 var ClearwebpackPlugin = require("clean-webpack-plugin");
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 
 const webpack = require("webpack");
 
 var plugins = [
-  new webpack.ProvidePlugin({
-    $: "jquery",
-    jQuery: "jquery"
-  }),
   extractPlugin,
+  new HtmlWebpackExternalsPlugin(
+    {
+        externals: [
+            {
+              module: 'jquery',
+              entry: 'https://unpkg.com/jquery@3.2.1/dist/jquery.min.js', //'dist/jquery.min.js',
+              global: 'jQuery',
+            },
+          ],
+    }
+  ),
 
   new HtmlWebpackPlugin({
     filename: "index.html",
@@ -24,10 +32,7 @@ var plugins = [
     chunks:['app']
   }),
   new ClearwebpackPlugin(["dist"]),
-  new webpack.optimize.CommonsChunkPlugin(
-      {
-          names:['jquery']
-      })
+  
 ];
 
 // const WebpackShellPlugin = require('webpack-shell-plugin');
@@ -37,16 +42,11 @@ var plugins = [
 // }));
 
 module.exports = {
-  // externals: {
-  //     jquery:'jQuery'
-  // },
 
   entry: {
     app: "./src/app.js",
     // 'page/home':'./src/home.js',
     // 'page/about':'./src/about.js',
-    // vendor:['jquery','moment'] , //['juqry','other-lib']
-    jquery: ['jquery']
   }, //string | object |array
   output: {
     path: path.resolve(__dirname, "dist"),
