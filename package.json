@@ -12,6 +12,7 @@
     "jquery": "^1.12.4",
     "jshint": "^2.9.5",
     "jshint-loader": "^0.8.4",
+    "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "style-loader": "^0.20.1"
   },
@@ -19,6 +20,7 @@
     "clean-webpack-plugin": "^0.1.18",
     "copy-webpack-plugin": "^4.4.1",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
     "html-loader": "^0.5.5",
     "html-webpack-externals-plugin": "^3.6.0",
     "html-webpack-plugin": "^2.30.1",
@@ -30,7 +32,9 @@
     "webpack-shell-plugin": "^0.5.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --open",
+    "prod": "webpack -p"
   },
   "author": "",
   "license": "ISC"
